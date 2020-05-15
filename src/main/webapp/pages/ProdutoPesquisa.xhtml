@@ -22,11 +22,21 @@
                         <p:button value="Buscar"/>
                         <p:button value="Novo"/>
                     </h:panelGrid>
-                    <p:dataTable emptyMessage="Nenhum Registro Encontrado">
-                        <p:column headerText="Código"></p:column>
-                        <p:column headerText="Valor"></p:column>
-                        <p:column headerText="Quantidade"></p:column>
-                        <p:column headerText="Fornecedor"></p:column>
+                    <p:dataTable emptyMessage="Nenhum Registro Encontrado"
+                                 value="#{produtoBean.produtos}"
+                                 var="cursorpro" paginator="true">
+                        <p:column headerText="Código">
+                            <h:outputText value="#{cursorpro.codigo}"/>
+                        </p:column>
+                        <p:column headerText="Valor">
+                            <h:outputText value="#{cursorpro.valor}"/>
+                        </p:column>
+                        <p:column headerText="Quantidade">
+                            <h:outputText value="#{cursorpro.qtde}"/>
+                        </p:column>
+                        <p:column headerText="Fornecedor">
+                            <h:outputText value="#{cursorpro.fornecedor.nome}"/>
+                        </p:column>
                     </p:dataTable>
                 </h:form>
             </ui:define>

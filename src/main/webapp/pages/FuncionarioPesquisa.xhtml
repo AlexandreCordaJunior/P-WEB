@@ -24,12 +24,23 @@
                         <p:button value="Buscar"/>
                         <p:button value="Novo"/>
                     </h:panelGrid>
-                    <p:dataTable emptyMessage="Nenhum Registro Encontrado">
-                        <p:column headerText="Código"></p:column>
-                        <p:column headerText="Nome"></p:column>
-                        <p:column headerText="CPF"></p:column>
-                        <p:column headerText="Função"></p:column>
-                        <p:column headerText="Opções"></p:column>
+                    <p:dataTable emptyMessage="Nenhum Registro Encontrado"
+                                 value="#{funcionarioBean.funcionarios}"
+                                 var="cursorfun" paginator="true">
+                        <p:column headerText="Código">
+                            <h:outputText value="#{cursorfun.codigo}"/>
+                        </p:column>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{cursorfun.nome}"/>
+                        </p:column>
+                        <p:column headerText="CPF">
+                            <h:outputText value="#{cursorfun.cpf}"/>
+                        </p:column>
+                        <p:column headerText="Função">
+                            <h:outputText value="#{cursorfun.funcao}"/>
+                        </p:column>
+                        <p:column headerText="Opções">
+                        </p:column>
                     </p:dataTable>
                 </h:form>
             </ui:define>
