@@ -13,13 +13,27 @@
                 <h:form>
                     <p:toolbar>
                         <f:facet name="left">
-                            <h:outputText value="Fornecedor"/>
+                            <h:outputText value="Funcionário"/>
                         </f:facet>
                     </p:toolbar>
 
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Nome:"/>
                         <p:inputText maxlength="50" size="30"/>
+
+                        <p:outputLabel value="CPF:"/>
+                        <p:inputMask mask="999.999.999-99" maxlength="20" size="20"/>
+
+                        <p:outputLabel value="Senha:"/>
+                        <p:password maxlength="8" size="20"/>
+
+                        <p:outputLabel value="Função:"/>
+                        <p:selectOneMenu>
+                            <f:selectItem itemValue="" itemLabel="Selecione um cargo"/>
+                            <f:selectItem itemValue="Administrador" itemLabel="Administrador"/>
+                            <f:selectItem itemValue="Vendedor" itemLabel="Vendedor"/>
+                            <f:selectItem itemValue="Gerente" itemLabel="Gerente"/>
+                        </p:selectOneMenu>
                     </h:panelGrid>
 
                     <h:panelGrid columns="5">
@@ -27,7 +41,7 @@
                         <p:commandButton value="Salvar"/>
                         <p:commandButton value="Editar"/>
                         <p:commandButton value="Excluir"/>
-                        <p:button value="Voltar" outcome="/pages/FornecedorPesquisa.xhtml"/>
+                        <p:button value="Voltar" outcome="/pages/FuncionarioPesquisa.xhtml"/>
                     </h:panelGrid>
                 </h:form>
             </ui:define>

@@ -13,22 +13,24 @@
                 <h:form>
                     <p:toolbar>
                         <f:facet name="left">
-                            <h:outputText value="Fornecedor"/>
+                            <h:outputText value="Funcionário"/>
                         </f:facet>
                     </p:toolbar>
-
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="6">
                         <p:outputLabel value="Nome:"/>
                         <p:inputText maxlength="50" size="30"/>
+                        <p:outputLabel value="CPF:"/>
+                        <p:inputMask mask="999.999.999-99" maxlength="20" size="20"/>
+                        <p:button value="Buscar"/>
+                        <p:button value="Novo"/>
                     </h:panelGrid>
-
-                    <h:panelGrid columns="5">
-                        <p:commandButton value="Novo"/>
-                        <p:commandButton value="Salvar"/>
-                        <p:commandButton value="Editar"/>
-                        <p:commandButton value="Excluir"/>
-                        <p:button value="Voltar" outcome="/pages/FornecedorPesquisa.xhtml"/>
-                    </h:panelGrid>
+                    <p:dataTable emptyMessage="Nenhum Registro Encontrado">
+                        <p:column headerText="Código"></p:column>
+                        <p:column headerText="Nome"></p:column>
+                        <p:column headerText="CPF"></p:column>
+                        <p:column headerText="Função"></p:column>
+                        <p:column headerText="Opções"></p:column>
+                    </p:dataTable>
                 </h:form>
             </ui:define>
         </ui:composition>
