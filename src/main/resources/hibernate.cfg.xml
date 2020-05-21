@@ -15,7 +15,7 @@
 		<property name="connection.password"></property>
 
 		<!-- Pool de Conexões Quantas conexões ao msm tempo -->
-		<property name="connection.pool_size">1</property>
+		<property name="connection.pool_size">10</property>
 
 		<!-- SQL dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
@@ -30,7 +30,10 @@
 		<property name="show_sql">true</property>
 
 		<!-- Cria as tabelas do banco de dados -->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">none</property>
+
+		<property name="hibernate.jdbc.use_get_generated_keys">true</property>
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 
 		<!-- Mapeamento das Entidades -->
 		<mapping class="br.com.quintanoite.domain.Fornecedor"/>
