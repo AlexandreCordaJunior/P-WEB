@@ -58,7 +58,7 @@ public class FornecedorBean implements Serializable {
             FornecedorDao dao = new FornecedorDao();
             dao.salvar(fornecedor);
             novo();
-            Messages.addGlobalError("Fornecedor salvo com sucesso");
+            Messages.addGlobalInfo("Fornecedor salvo com sucesso");
         }
         catch (RuntimeException e){
             Messages.addGlobalError("Ocorreu um erro ao salvar Fornecedor");
