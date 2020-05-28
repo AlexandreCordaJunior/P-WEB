@@ -10,25 +10,25 @@
 
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="conteudo">
-                <h:form>
+                <h:form id="formcar">
                     <p:toolbar>
                         <f:facet name="left">
                             <h:outputText value="Funcionário"/>
                         </f:facet>
                     </p:toolbar>
 
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2" id="pncad">
                         <p:outputLabel value="Nome:"/>
-                        <p:inputText maxlength="50" size="30"/>
+                        <p:inputText maxlength="50" size="30" value="#{funcionarioBean.funcionario.nome}"/>
 
                         <p:outputLabel value="CPF:"/>
-                        <p:inputMask mask="999.999.999-99" maxlength="20" size="20"/>
+                        <p:inputMask mask="999.999.999-99" maxlength="20" size="20" value="#{funcionarioBean.funcionario.cpf}"/>
 
                         <p:outputLabel value="Senha:"/>
-                        <p:password maxlength="8" size="20"/>
+                        <p:password maxlength="8" size="20" value="#{funcionarioBean.funcionario.senha}"/>
 
                         <p:outputLabel value="Função:"/>
-                        <p:selectOneMenu>
+                        <p:selectOneMenu value="#{funcionarioBean.funcionario.funcao}">
                             <f:selectItem itemValue="" itemLabel="Selecione um cargo"/>
                             <f:selectItem itemValue="Administrador" itemLabel="Administrador"/>
                             <f:selectItem itemValue="Vendedor" itemLabel="Vendedor"/>
@@ -38,7 +38,7 @@
 
                     <h:panelGrid columns="5">
                         <p:commandButton value="Novo"/>
-                        <p:commandButton value="Salvar"/>
+                        <p:commandButton value="Salvar" actionListener="#{funcionarioBean.salvar()}" update=":msgGlobal :formcar:pncad"/>
                         <p:commandButton value="Editar"/>
                         <p:commandButton value="Excluir"/>
                         <p:button value="Voltar" outcome="/pages/FuncionarioPesquisa.xhtml"/>

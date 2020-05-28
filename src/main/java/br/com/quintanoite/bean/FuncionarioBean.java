@@ -14,6 +14,17 @@ import java.util.List;
 @ViewScoped
 public class FuncionarioBean implements Serializable {
 
+    Funcionario funcionario;
+
+    public Funcionario getFuncionario() {
+        if(funcionario == null) funcionario = new Funcionario();
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
     private List<Funcionario> Funcionarios;
 
     public List<Funcionario> getFuncionarios() {
@@ -32,6 +43,23 @@ public class FuncionarioBean implements Serializable {
         }
         catch (RuntimeException e){
             Messages.addGlobalError("Ocorreu um erro ao listar Funcionario");
+            e.printStackTrace();
+        }
+    }
+
+    public void novo() {
+        funcionario = new Funcionario();
+    }
+
+    public void salvar() {
+        try {
+            FuncionarioDao dao = new FuncionarioDao();
+            dao.salvar(funcionario);
+            novo();
+            Messages.addGlobalInfo("Funcionario salvo com sucesso");
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao salvar Funcionario");
             e.printStackTrace();
         }
     }
