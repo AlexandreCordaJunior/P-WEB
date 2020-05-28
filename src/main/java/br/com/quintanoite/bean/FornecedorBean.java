@@ -14,6 +14,19 @@ import java.util.List;
 @ViewScoped
 public class FornecedorBean implements Serializable {
 
+    private Fornecedor fornecedor;
+
+    public Fornecedor getFornecedor() {
+        if(fornecedor == null){
+            fornecedor = new Fornecedor();
+        }
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
     private List<Fornecedor> fornecedores;
 
     public List<Fornecedor> getFornecedores() {
@@ -32,6 +45,23 @@ public class FornecedorBean implements Serializable {
         }
         catch (RuntimeException e){
             Messages.addGlobalError("Ocorreu um erro ao listar Fornecedor");
+            e.printStackTrace();
+        }
+    }
+
+    public void novo() {
+        fornecedor = new Fornecedor();
+    }
+
+    public void salvar() {
+        try {
+            FornecedorDao dao = new FornecedorDao();
+            dao.salvar(fornecedor);
+            novo();
+            Messages.addGlobalError("Fornecedor salvo com sucesso");
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao salvar Fornecedor");
             e.printStackTrace();
         }
     }

@@ -19,12 +19,12 @@
 
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Nome:"/>
-                        <p:inputText maxlength="50" size="30"/>
+                        <p:inputText maxlength="50" size="30" value="#{fornecedorBean.fornecedor.nome}"/>
                     </h:panelGrid>
 
                     <h:panelGrid columns="5">
                         <p:commandButton value="Novo"/>
-                        <p:commandButton value="Salvar"/>
+                        <p:commandButton value="Salvar" actionListener="#{fornecedorBean.salvar()}" update=":msgGlobal"/>
                         <p:commandButton value="Editar"/>
                         <p:commandButton value="Excluir"/>
                         <p:button value="Voltar" outcome="/pages/FornecedorPesquisa.xhtml"/>
