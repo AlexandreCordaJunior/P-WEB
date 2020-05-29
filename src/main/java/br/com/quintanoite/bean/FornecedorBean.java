@@ -2,6 +2,7 @@ package br.com.quintanoite.bean;
 
 import br.com.quintanoite.dao.FornecedorDao;
 import br.com.quintanoite.domain.Fornecedor;
+import br.com.quintanoite.util.JSFUtil;
 import org.omnifaces.util.Messages;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +43,24 @@ public class FornecedorBean implements Serializable {
         try {
             FornecedorDao dao = new FornecedorDao();
             fornecedores = dao.listar();
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao listar Fornecedor");
+            e.printStackTrace();
+        }
+    }
+
+    public void carregarCadastro() {
+        try {
+            String valor = JSFUtil.getParam("forcad");
+            if(valor != null) {
+                Long codigo = Long.parseLong(valor);
+                FornecedorDao dao = new FornecedorDao();
+                fornecedor = dao.buscar(codigo);
+            }
+            else{
+                novo();
+            }
         }
         catch (RuntimeException e){
             Messages.addGlobalError("Ocorreu um erro ao listar Fornecedor");

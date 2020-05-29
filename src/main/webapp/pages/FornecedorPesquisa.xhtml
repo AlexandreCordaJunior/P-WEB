@@ -31,7 +31,15 @@
                         <p:column headerText="Nome">
                             <h:outputText value="#{cursorfor.nome}"/>
                         </p:column>
-                        <p:column headerText="Opções"></p:column>
+                        <p:column headerText="Opções">
+                            <p:button icon="ui-icon-pencil" outcome="/pages/FornecedorCadastro.xhtml">
+                                <f:param name="forcad" value="#{cursorfor.codigo}"/>
+                            </p:button>
+
+                            <p:button icon="ui-icon-trash">
+                                <f:param name="forcad" value="#{cursorfor.codigo}"/>
+                            </p:button>
+                        </p:column>
                     </p:dataTable>
                 </h:form>
             </ui:define>
