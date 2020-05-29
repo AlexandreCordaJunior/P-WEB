@@ -2,6 +2,7 @@ package br.com.quintanoite.bean;
 
 import br.com.quintanoite.dao.FuncionarioDao;
 import br.com.quintanoite.domain.Funcionario;
+import br.com.quintanoite.util.JSFUtil;
 import org.omnifaces.util.Messages;
 
 import javax.annotation.PostConstruct;
@@ -51,6 +52,24 @@ public class FuncionarioBean implements Serializable {
         funcionario = new Funcionario();
     }
 
+    public void carregarCadastro() {
+        try {
+            String valor = JSFUtil.getParam("forcad");
+            if(valor != null) {
+                Long codigo = Long.parseLong(valor);
+                FuncionarioDao dao = new FuncionarioDao();
+                funcionario = dao.buscar(codigo);
+            }
+            else{
+                novo();
+            }
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao listar Funcionario");
+            e.printStackTrace();
+        }
+    }
+
     public void salvar() {
         try {
             FuncionarioDao dao = new FuncionarioDao();
@@ -60,6 +79,32 @@ public class FuncionarioBean implements Serializable {
         }
         catch (RuntimeException e){
             Messages.addGlobalError("Ocorreu um erro ao salvar Funcionario");
+            e.printStackTrace();
+        }
+    }
+
+    public void excluir() {
+        try {
+            FuncionarioDao dao = new FuncionarioDao();
+            dao.excluir(funcionario);
+            novo();
+            Messages.addGlobalInfo("Funcionario excluido com sucesso");
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao excluir Funcionario");
+            e.printStackTrace();
+        }
+    }
+
+    public void editar() {
+        try {
+            FuncionarioDao dao = new FuncionarioDao();
+            dao.editar(funcionario);
+            novo();
+            Messages.addGlobalInfo("Funcionario editado com sucesso");
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao editar Funcionario");
             e.printStackTrace();
         }
     }

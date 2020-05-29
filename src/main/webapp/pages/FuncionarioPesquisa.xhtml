@@ -40,6 +40,13 @@
                             <h:outputText value="#{cursorfun.funcao}"/>
                         </p:column>
                         <p:column headerText="Opções">
+                            <p:button icon="ui-icon-pencil" outcome="/pages/FuncionarioCadastro.xhtml">
+                                <f:param name="forcad" value="#{cursorfun.codigo}"/>
+                            </p:button>
+
+                            <p:button icon="ui-icon-trash" outcome="/pages/FuncionarioCadastro.xhtml">
+                                <f:param name="forcad" value="#{cursorfun.codigo}"/>
+                            </p:button>
                         </p:column>
                     </p:dataTable>
                 </h:form>

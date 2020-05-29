@@ -29,10 +29,10 @@
                     </h:panelGrid>
 
                     <h:panelGrid columns="5">
-                        <p:commandButton value="Novo"/>
+                        <p:commandButton value="Novo"  actionListener="#{fornecedorBean.novo()}" update=":msgGlobal :formcar:pncad"/>
                         <p:commandButton value="Salvar" actionListener="#{fornecedorBean.salvar()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Editar"/>
-                        <p:commandButton value="Excluir"/>
+                        <p:commandButton value="Editar" actionListener="#{fornecedorBean.editar()}" update=":msgGlobal :formcar:pncad"/>
+                        <p:commandButton value="Excluir" actionListener="#{fornecedorBean.excluir()}" update=":msgGlobal :formcar:pncad"/>
                         <p:button value="Voltar" outcome="/pages/FornecedorPesquisa.xhtml"/>
                     </h:panelGrid>
                 </h:form>

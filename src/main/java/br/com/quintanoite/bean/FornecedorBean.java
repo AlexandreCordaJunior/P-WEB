@@ -84,4 +84,30 @@ public class FornecedorBean implements Serializable {
             e.printStackTrace();
         }
     }
+
+    public void excluir() {
+        try {
+            FornecedorDao dao = new FornecedorDao();
+            dao.excluir(fornecedor);
+            novo();
+            Messages.addGlobalInfo("Fornecedor excluido com sucesso");
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao excluir Fornecedor");
+            e.printStackTrace();
+        }
+    }
+
+    public void editar() {
+        try {
+            FornecedorDao dao = new FornecedorDao();
+            dao.editar(fornecedor);
+            novo();
+            Messages.addGlobalInfo("Fornecedor editado com sucesso");
+        }
+        catch (RuntimeException e){
+            Messages.addGlobalError("Ocorreu um erro ao editar Fornecedor");
+            e.printStackTrace();
+        }
+    }
 }
