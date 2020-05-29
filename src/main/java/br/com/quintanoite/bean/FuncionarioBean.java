@@ -54,7 +54,7 @@ public class FuncionarioBean implements Serializable {
 
     public void carregarCadastro() {
         try {
-            String valor = JSFUtil.getParam("forcad");
+            String valor = JSFUtil.getParam("funcad");
             if(valor != null) {
                 Long codigo = Long.parseLong(valor);
                 FuncionarioDao dao = new FuncionarioDao();
