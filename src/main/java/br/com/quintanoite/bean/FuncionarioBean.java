@@ -15,6 +15,16 @@ import java.util.List;
 @ViewScoped
 public class FuncionarioBean implements Serializable {
 
+    private String acao;
+
+    public String getAcao() {
+        return acao;
+    }
+
+    public void setAcao(String acao) {
+        this.acao = acao;
+    }
+
     Funcionario funcionario;
 
     public Funcionario getFuncionario() {
@@ -54,6 +64,7 @@ public class FuncionarioBean implements Serializable {
 
     public void carregarCadastro() {
         try {
+            acao = JSFUtil.getParam("funacao");
             String valor = JSFUtil.getParam("funcad");
             if(valor != null) {
                 Long codigo = Long.parseLong(valor);

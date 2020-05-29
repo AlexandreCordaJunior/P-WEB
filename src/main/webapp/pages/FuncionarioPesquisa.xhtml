@@ -22,7 +22,9 @@
                         <p:outputLabel value="CPF:"/>
                         <p:inputMask mask="999.999.999-99" maxlength="20" size="20"/>
                         <p:button value="Buscar"/>
-                        <p:button value="Novo"/>
+                        <p:button value="Novo" outcome="/pages/FuncionarioCadastro.xhtml">
+                            <f:param name="funacao" value="Salvar"/>
+                        </p:button>
                     </h:panelGrid>
                     <p:dataTable emptyMessage="Nenhum Registro Encontrado"
                                  value="#{funcionarioBean.funcionarios}"
@@ -42,10 +44,12 @@
                         <p:column headerText="Opções">
                             <p:button icon="ui-icon-pencil" outcome="/pages/FuncionarioCadastro.xhtml">
                                 <f:param name="funcad" value="#{cursorfun.codigo}"/>
+                                <f:param name="funacao" value="Editar"/>
                             </p:button>
 
                             <p:button icon="ui-icon-trash" outcome="/pages/FuncionarioCadastro.xhtml">
                                 <f:param name="funcad" value="#{cursorfun.codigo}"/>
+                                <f:param name="funacao" value="Excluir"/>
                             </p:button>
                         </p:column>
                     </p:dataTable>

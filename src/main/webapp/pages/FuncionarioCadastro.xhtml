@@ -25,16 +25,16 @@
 
                     <h:panelGrid columns="2" id="pncad">
                         <p:outputLabel value="Nome:"/>
-                        <p:inputText maxlength="50" size="30" value="#{funcionarioBean.funcionario.nome}"/>
+                        <p:inputText maxlength="50" size="30" value="#{funcionarioBean.funcionario.nome}" readonly="#{funcionarioBean.acao == 'Excluir'}"/>
 
                         <p:outputLabel value="CPF:"/>
-                        <p:inputMask mask="999.999.999-99" maxlength="20" size="20" value="#{funcionarioBean.funcionario.cpf}"/>
+                        <p:inputMask mask="999.999.999-99" maxlength="20" size="20" value="#{funcionarioBean.funcionario.cpf}" readonly="#{funcionarioBean.acao == 'Excluir'}"/>
 
                         <p:outputLabel value="Senha:"/>
-                        <p:password maxlength="8" size="20" value="#{funcionarioBean.funcionario.senha}"/>
+                        <p:password maxlength="8" size="20" value="#{funcionarioBean.funcionario.senha}" readonly="#{funcionarioBean.acao == 'Excluir'}"/>
 
                         <p:outputLabel value="Função:"/>
-                        <p:selectOneMenu value="#{funcionarioBean.funcionario.funcao}">
+                        <p:selectOneMenu value="#{funcionarioBean.funcionario.funcao}" editable="#{funcionarioBean.acao != 'Excluir'}">
                             <f:selectItem itemValue="" itemLabel="Selecione um cargo"/>
                             <f:selectItem itemValue="Administrador" itemLabel="Administrador"/>
                             <f:selectItem itemValue="Vendedor" itemLabel="Vendedor"/>
@@ -44,9 +44,9 @@
 
                     <h:panelGrid columns="5">
                         <p:commandButton value="Novo"  actionListener="#{funcionarioBean.novo()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Salvar" actionListener="#{funcionarioBean.salvar()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Editar" actionListener="#{funcionarioBean.editar()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" update=":msgGlobal :formcar:pncad"/>
+                        <p:commandButton value="Salvar" actionListener="#{funcionarioBean.salvar()}" update=":msgGlobal :formcar:pncad" rendered="#{funcionarioBean.acao == 'Salvar'}"/>
+                        <p:commandButton value="Editar" actionListener="#{funcionarioBean.editar()}" update=":msgGlobal :formcar:pncad" rendered="#{funcionarioBean.acao == 'Editar'}"/>
+                        <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" update=":msgGlobal :formcar:pncad" rendered="#{funcionarioBean.acao == 'Excluir'}"/>
                         <p:button value="Voltar" outcome="/pages/FuncionarioPesquisa.xhtml"/>
                     </h:panelGrid>
                 </h:form>

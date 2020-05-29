@@ -20,7 +20,9 @@
                         <p:outputLabel value="Nome:"/>
                         <p:inputText maxlength="50" size="30"/>
                         <p:button value="Buscar"/>
-                        <p:button value="Novo" />
+                        <p:button value="Novo" outcome="/pages/FornecedorCadastro.xhtml">
+                            <f:param name="foracao" value="Salvar"/>
+                        </p:button>
                     </h:panelGrid>
                     <p:dataTable emptyMessage="Nenhum Registro Encontrado"
                                  value="#{fornecedorBean.fornecedores}"
@@ -34,10 +36,12 @@
                         <p:column headerText="Opções">
                             <p:button icon="ui-icon-pencil" outcome="/pages/FornecedorCadastro.xhtml">
                                 <f:param name="forcad" value="#{cursorfor.codigo}"/>
+                                <f:param name="foracao" value="Editar"/>
                             </p:button>
 
                             <p:button icon="ui-icon-trash" outcome="/pages/FornecedorCadastro.xhtml">
                                 <f:param name="forcad" value="#{cursorfor.codigo}"/>
+                                <f:param name="foracao" value="Excluir"/>
                             </p:button>
                         </p:column>
                     </p:dataTable>

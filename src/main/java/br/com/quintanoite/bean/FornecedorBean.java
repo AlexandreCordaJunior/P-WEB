@@ -24,6 +24,16 @@ public class FornecedorBean implements Serializable {
         return fornecedor;
     }
 
+    private String acao;
+
+    public String getAcao() {
+        return acao;
+    }
+
+    public void setAcao(String acao) {
+        this.acao = acao;
+    }
+
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
@@ -52,6 +62,7 @@ public class FornecedorBean implements Serializable {
 
     public void carregarCadastro() {
         try {
+            acao = JSFUtil.getParam("foracao");
             String valor = JSFUtil.getParam("forcad");
             if(valor != null) {
                 Long codigo = Long.parseLong(valor);

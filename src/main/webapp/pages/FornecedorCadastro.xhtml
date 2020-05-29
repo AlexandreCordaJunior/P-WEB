@@ -25,14 +25,15 @@
 
                     <h:panelGrid columns="2" id="pncad">
                         <p:outputLabel value="Nome:"/>
-                        <p:inputText maxlength="50" size="30" value="#{fornecedorBean.fornecedor.nome}"/>
+                        <p:inputText maxlength="50" size="30" value="#{fornecedorBean.fornecedor.nome}"
+                            readonly="#{fornecedorBean.acao == 'Excluir'}"/>
                     </h:panelGrid>
 
                     <h:panelGrid columns="5">
                         <p:commandButton value="Novo"  actionListener="#{fornecedorBean.novo()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Salvar" actionListener="#{fornecedorBean.salvar()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Editar" actionListener="#{fornecedorBean.editar()}" update=":msgGlobal :formcar:pncad"/>
-                        <p:commandButton value="Excluir" actionListener="#{fornecedorBean.excluir()}" update=":msgGlobal :formcar:pncad"/>
+                        <p:commandButton value="Salvar" actionListener="#{fornecedorBean.salvar()}" update=":msgGlobal :formcar:pncad" rendered="#{fornecedorBean.acao == 'Salvar'}"/>
+                        <p:commandButton value="Editar" actionListener="#{fornecedorBean.editar()}" update=":msgGlobal :formcar:pncad" rendered="#{fornecedorBean.acao == 'Editar'}"/>
+                        <p:commandButton value="Excluir" actionListener="#{fornecedorBean.excluir()}" update=":msgGlobal :formcar:pncad" rendered="#{fornecedorBean.acao == 'Excluir'}"/>
                         <p:button value="Voltar" outcome="/pages/FornecedorPesquisa.xhtml"/>
                     </h:panelGrid>
                 </h:form>
