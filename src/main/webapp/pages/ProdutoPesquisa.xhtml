@@ -20,7 +20,9 @@
                         <p:outputLabel value="Nome:"/>
                         <p:inputText maxlength="50" size="30"/>
                         <p:button value="Buscar"/>
-                        <p:button value="Novo"/>
+                        <p:button value="Novo" outcome="/pages/ProdutoCadastro.xhtml">
+                            <f:param name="proacao" value="Salvar"/>
+                        </p:button>
                     </h:panelGrid>
                     <p:dataTable emptyMessage="Nenhum Registro Encontrado"
                                  value="#{produtoBean.produtos}"
@@ -36,6 +38,17 @@
                         </p:column>
                         <p:column headerText="Fornecedor">
                             <h:outputText value="#{cursorpro.fornecedor.nome}"/>
+                        </p:column>
+                        <p:column headerText="Opções">
+                            <p:button icon="ui-icon-pencil" outcome="/pages/ProdutoCadastro.xhtml">
+                                <f:param name="procod" value="#{cursorpro.codigo}"/>
+                                <f:param name="proacao" value="Editar"/>
+                            </p:button>
+
+                            <p:button icon="ui-icon-trash" outcome="/pages/ProdutoCadastro.xhtml">
+                                <f:param name="procod" value="#{cursorpro.codigo}"/>
+                                <f:param name="proacao" value="Excluir"/>
+                            </p:button>
                         </p:column>
                     </p:dataTable>
                 </h:form>

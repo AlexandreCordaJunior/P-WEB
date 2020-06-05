@@ -52,8 +52,14 @@ public class Produto extends GenericDomain{
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "Produto{" +
+				"nome='" + nome + '\'' +
+				", valor=" + valor +
+				", qtde=" + qtde +
+				", fornecedor=" + fornecedor +
+				'}';
+	}
 }

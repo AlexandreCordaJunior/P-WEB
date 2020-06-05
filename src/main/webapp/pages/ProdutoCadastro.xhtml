@@ -8,42 +8,47 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{produtoBean.carregarCadastro()}"/>
+            </f:metadata>
+        </ui:define>
+
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="conteudo">
-                <h:form>
+                <h:form id="prodform">
                     <p:toolbar>
                         <f:facet name="left">
                             <h:outputText value="Produto"/>
                         </f:facet>
                     </p:toolbar>
 
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="2" id="pncad">
                         <p:outputLabel value="Código:"/>
-                        <p:inputText maxlength="20" size="10"/>
+                        <p:inputText maxlength="20" size="10" value="#{produtoBean.produto.codigo}"/>
 
                         <p:outputLabel value="Nome:"/>
-                        <p:inputText maxlength="50" size="20"/>
+                        <p:inputText maxlength="50" size="20" value="#{produtoBean.produto.nome}"/>
 
                         <p:outputLabel value="Quantidade:"/>
-                        <p:inputText maxlength="8" size="20"/>
+                        <p:inputText maxlength="8" size="20" value="#{produtoBean.produto.qtde}"/>
 
                         <p:outputLabel value="Valor:"/>
-                        <p:inputText maxlength="50" size="20"/>
+                        <p:inputText maxlength="50" size="20" value="#{produtoBean.produto.valor}"/>
 
                         <p:outputLabel value="Fornecedor:"/>
-                        <p:selectOneMenu>
+                        <p:selectOneMenu value="#{produtoBean.produto.fornecedor}" converter="fornecedorConverter">
                             <f:selectItem itemValue="" itemLabel="Selecione um fornecedor"/>
-                            <f:selectItem itemValue="Fornecedor1" itemLabel="Fornecedor1"/>
-                            <f:selectItem itemValue="Fornecedor2" itemLabel="Fornecedor2"/>
-                            <f:selectItem itemValue="Fornecedor3" itemLabel="Fornecedor3"/>
+                            <f:selectItems value="#{produtoBean.fornecedores}" var="fornecedor"
+                                itemValue="#{fornecedor}" itemLabel="#{fornecedor.nome}"/>
                         </p:selectOneMenu>
                     </h:panelGrid>
 
                     <h:panelGrid columns="5">
-                        <p:commandButton value="Novo"/>
-                        <p:commandButton value="Salvar"/>
-                        <p:commandButton value="Editar"/>
-                        <p:commandButton value="Excluir"/>
+                        <p:commandButton value="Novo"  actionListener="#{produtoBean.novo()}" update=":msgGlobal :prodform:pncad"/>
+                        <p:commandButton value="Salvar" actionListener="#{produtoBean.salvar()}" update=":msgGlobal :prodform:pncad" rendered="#{produtoBean.acao == 'Salvar'}"/>
+                        <p:commandButton value="Editar" actionListener="#{produtoBean.editar()}" update=":msgGlobal :prodform:pncad" rendered="#{produtoBean.acao == 'Editar'}"/>
+                        <p:commandButton value="Excluir" actionListener="#{produtoBean.excluir()}" update=":msgGlobal :prodform:pncad" rendered="#{produtoBean.acao == 'Excluir'}"/>
                         <p:button value="Voltar" outcome="/pages/ProdutoPesquisa.xhtml"/>
                     </h:panelGrid>
                 </h:form>
