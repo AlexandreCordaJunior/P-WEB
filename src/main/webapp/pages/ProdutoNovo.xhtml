@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:component template="/templates/template.xhtml">
+        <ui:define name="conteudo">
+            <h:form id="frmLista">
+                <p:panel header="Lista de Produtos">
+                    <p:dataTable id="tabela" emptyMessage="Nenhum Registro Encontrado"
+                                 paginator="true" value="#{produtoBean.produtos}" var="cursorprod">
+                        <f:facet name="header">
+                            <p:commandButton value="Novo"
+                                             actionListener="#{produtoBean.novo()}"
+                                             oncomplete="PF('dialogo').show();"
+                                             update=":msgGlobal :frmCad:painel" />
+                        </f:facet>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{cursorprod.nome}" />
+                        </p:column>
+                        <p:column headerText="Quantidade">
+                            <h:outputText value="#{cursorprod.qtde}" />
+                        </p:column>
+                        <p:column headerText="Preço">
+                            <h:outputText value="#{cursorprod.valor}" />
+                        </p:column>
+                        <p:column headerText="Fornecedor">
+                            <h:outputText value="#{cursorprod.fornecedor.nome}" />
+                        </p:column>
+                        <p:column headerText="Opções">
+                            <p:commandButton icon="ui-icon-trash"
+                                             actionListener="#{produtoBean.excluir()}"
+                                             update="msgGlobal :frmLista:tabela">
+                                <p:confirm header="Confirmação"
+                                           message="Deseja realmente excluir produto?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-pencil"
+                                             actionListener="#{produtoBean.editar()}"
+                                             update="msgGlobal :frmCad:painel"
+                                             oncomplete="PF('dialogo').show();">
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    <p:confirmDialog global="true">
+                        <p:commandButton value="Sim" type="button"
+                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button"
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:panel>
+            </h:form>
+            <p:dialog header="Cadastro de Produtos" widgetVar="dialogo"
+                      draggable="false" resizable="false" closable="false">
+                <h:form id="frmCad">
+                    <h:panelGrid id="painel" columns="2">
+                        <h:outputLabel value="Nome: " />
+                        <p:inputText maxlength="50" size="30"
+                                     value="#{produtoBean.produto.nome}" />
+                        <h:outputLabel value="Quantidade: " />
+                        <p:inputText maxlength="5" size="10"
+                                     value="#{produtoBean.produto.qtde}" />
+                        <h:outputLabel value="Preço: " />
+                        <p:inputText maxlength="7" size="10"
+                                     value="#{produtoBean.produto.valor}" />
+                        <h:outputLabel value="fornecedor:" />
+                        <p:selectOneMenu filter="true" value="#{produtoBean.produto.fornecedor}"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem noSelectionOption="true"
+                                          itemLabel="Selecione Fornecedor" />
+                            <f:selectItems value="#{produtoBean.fornecedores}"
+                                           var="fornecedor" itemValue="#{fornecedor}"
+                                           itemLabel="#{fornecedor.nome}" />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar"
+                                         actionListener="#{produtoBean.salvar()}"
+                                         update=":msgGlobal :frmCad:painel" />
+                        <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:component>
+</html>

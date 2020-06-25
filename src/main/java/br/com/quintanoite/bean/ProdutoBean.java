@@ -86,7 +86,16 @@ public class ProdutoBean implements Serializable {
     }
 
     public void novo() {
-        produto = new Produto();
+        try{
+            produto = new Produto();
+            FornecedorDao dao = new FornecedorDao();
+            fornecedores = dao.listar();
+        }
+        catch (Exception e){
+            Messages.addGlobalInfo("Erro ao carregar");
+            e.printStackTrace();
+        }
+
     }
 
 
